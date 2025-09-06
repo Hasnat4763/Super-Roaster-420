@@ -17,4 +17,10 @@ client = WebClient(token=bot_token)
 def roast_me(ack, respond, command):
     ack()
     user_id = command["user_id"]
-    respond(f"<@{user_id}> You are a Piece of Shit!")
+    respond(f"<@{user_id}> You are Not A Sigma!")
+    
+    
+    
+if __name__ == "__main__":
+    handler = SocketModeHandler(app, app_token)
+    handler.start()
