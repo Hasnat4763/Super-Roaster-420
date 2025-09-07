@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from slack_sdk import WebClient
 load_dotenv(".env")
-from fetching_from_apis import fetch_compliments, fetch_roasts
+from fetching_from_apis import fetch_compliments, fetch_roasts, fetch_random
 
 
 
@@ -24,26 +24,27 @@ def compliment_me(body, say):
     choicesample = event.get("text","").split()
     
     choice = choicesample[1].lower()
+    
+    if choicesample[2].lower() == "me":
+            user_id = event.get("user")
+    else:
+        user_id = choicesample[2].strip("<>@")
 
 
     if choice == "compliment":
-        if choicesample[2].lower() == "me":
-            user_id = event.get("user")
-        else:
-            user_id = choicesample[2].strip("<>@")
-        response = fetch_compliments()
+        response = fetch_compliments(user_id)
         
     elif choice == "roast":
-        if choicesample[2].lower() == "me":
-            user_id = event.get("user")
-        else:
-            user_id = choicesample[2].strip("<>@")
-        response = fetch_roasts()
-    else:
-        response = "Please use the format '@Super Roaster 420 compliment me' or '@Super Roaster 420 roast @username'"
-        user_id = event.get("user")
+        response = fetch_roasts(user_id)
         
-    say(f"<@{user_id}> {response}")
+    elif choice == "random":
+        response = fetch_random(user_id)
+        
+    else:
+        response = "Please use the format '@Super Roaster 420 compliment me' or '@Super Roaster 420 roast @username' or '@Super Roaster 420 random me"
+        user_id = event.get("user")
+
+    say(blocks = response, text=f"<@{user_id}> {response}")
 
 if __name__ == "__main__":
     handler = SocketModeHandler(app, app_token)
