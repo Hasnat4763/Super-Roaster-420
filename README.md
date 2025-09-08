@@ -1,19 +1,14 @@
 # Super-Roaster-420
 
-A slack bot which uses Evil Insult Generator and Compliments API to fetch Roasts and Compliments. It is just made for fun.
+A slack bot which uses Evil Insult Generator and Compliments API to fetch Roasts and Compliments. It is made for fun so that people in Hack Club Slack can roast others. Many people have already liked it.
 
 
 # Features:
 
 It can be triggered by mentioning it in a channel.
 
-It has 3 functions, Compliment, Mention and Random.
+When mentioning just tell it what to do. It can roast you or others.
 
-You can tag others to roast or compliment them instead.
-
-Magic Word:
-
-@Super Roaster 420 Roast/Compliment/Random me/@others
 
 # APIs used: 
 Evil Insult Generator: https://evilinsult.com/api/#generate-insult-get
